@@ -1,0 +1,7 @@
+*.asv
+TODO.txt
+Data
+Structures
+!Structures/nodelist.mat
+Documentation/Documentation.docx
+preinstalled
