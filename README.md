@@ -9,7 +9,7 @@ This toolbox downloads the dataset, imports it into MATLAB, normalizes the data 
 The toolbox can be installed by cloning this repository and running build_database.m, which will download all of the necessary files. This will take some time but ensures that the dataset is up to date, since new experiments are being added regularly. Alternatively you can download the pre-installed toolbox and dataset here: (zip file)
 
 ## Documentation
-Full documentation here: [Documentation](Documentation/Documentation.pdf)
+Full documentation here: [Documentation](Documentation/Documentation_v2.pdf)
 
 ## Data
 Data comes from the [Allen Brain Atlas](https://brain-map.org).
