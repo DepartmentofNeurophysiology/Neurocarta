@@ -22,7 +22,7 @@ startup; % Add folders to path
 %% Load structures and URLs necessary to download everything
 if exist(fullfile('Structures','nodelist.mat'),'file')~=2
     disp('Downloading default network nodes from Github...');
-    nodes_url = '';
+    nodes_url = 'https://github.com/DepartmentofNeurophysiology/NeuralNet-ABC/blob/main/Structures/nodelist.mat?raw=true';
     websave(fullfile('Structures','nodelist.mat'),nodes_url,opt);
 end
 if exist('structures.mat','file')~=2
