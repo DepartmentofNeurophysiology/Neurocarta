@@ -8,19 +8,26 @@ opt = weboptions('TimeOut',120);
 
 load('experiments','experiments');
 n = length(experiments.id);
+
 % Number of already imported experiments
 nm = length(dir(fullfile('Data','*.json')));
-fprintf('Downloading %d experiments from connectivity atlas...\n',n-nm);
+if nm < n
+    fprintf('Downloading %d experiments from connectivity atlas...\n',n-nm);
+end
 
 tic;
 for i = 1:n
     id = experiments.id{i};
     url = [base_url sprintf(crit_opt,id) only_opt];
-    if exist(fullfile('Data',[id '.json']),'file')~=2
+    fname = fullfile('Data',[id '.json']);
+    if exist(fname,'file')~=2
         try
-            websave(fullfile('Data',[id '.json']),url,opt);
+            websave(fname,url,opt);
         catch
-            fprintf('Couldn''t download %s.json\n',id);
+            fprintf('Couldn''t download %s.json. Continuing...\n',id);
+            if exist(fname,'file')==2
+                delete(fname);
+            end
         end
     end
     if toc>60 % Display progress every minute

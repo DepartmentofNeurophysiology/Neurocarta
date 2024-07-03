@@ -27,9 +27,18 @@ for i = 1:n
     
     % Load data
     str = fileread(fullfile('Data',[experiments.id{i} '.json']));
-    d = JSON.parse(str);
-    d = d.msg; % data in struct format
-    
+    try
+        d = JSON.parse(str);
+        d = d.msg; % data in struct format
+    catch ME
+        if ~strcmp(ME.identifier,'MATLAB:webservices:OperationTerminatedByUser')
+            fprintf('Couldn''t parse %s.json, try deleting file and rerunning build_database. Continuing...\n', experiments.id{i});
+            continue;
+        else
+            throw(ME);
+        end
+    end
+
     % Create empty data structure
     StructureID = [];
     StructureName = [];
@@ -38,7 +47,7 @@ for i = 1:n
         hem(1).(proj{p}) = []; % Left hemisphere data
         hem(2).(proj{p}) = []; % Right hemisphere data
     end
-    
+
     for j = 1:length(d)
         if ~ismember(d{j}.structure_id,structures.id) % ignore unknown structures
             continue;
@@ -89,9 +98,10 @@ for i = 1:n
     save(fullfile('Data',experiments.id{i}), ...
         'StructureID','StructureName','HemisphereID','ipsi','contra');
     
+    nm = nm + 1;
     % Display progress every minute
     if toc>60
-        fprintf('\t%d/%d\n',i+nm,n);
+        fprintf('\t%d/%d\n',nm,n);
         tic;
     end
 end
