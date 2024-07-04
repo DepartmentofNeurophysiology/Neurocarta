@@ -15,8 +15,8 @@ group_acro = {'ISO';'OLF';'HPF';'CSP';'STR';'PAL';'TH';'HY';'MBs';'MBm';'MBs';'P
 
 %% Load and parse data
 str = fileread(jsonfile);
-data = JSON.parse(str);
-data = data.msg{1}.children{1};
+data = jsondecode(str);
+data = data.msg(1).children(1);
 
 %% Set tree root
 structures.name = {data.name};
@@ -31,7 +31,7 @@ structures.region = 0;
 
 %% Convert tree->list
 for i = 1:length(data.children)
-    listtree(data.children{i});
+    listtree(data.children(i));
 end
 
 % Fill in 'child_index' fields
@@ -75,7 +75,7 @@ save(fullfile('Structures','structures'),'structures','regions','groups');
             structures.level = [structures.level;0];
         end
         for j = 1:length(d.children)
-            listtree(d.children{j});
+            listtree(d.children(j));
         end
     end
 end
