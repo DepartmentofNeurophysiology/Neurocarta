@@ -17,10 +17,3 @@ Data comes from the [Allen Brain Atlas](https://brain-map.org).
 Related publications:
 * [A mesoscale connectome of the mouse brain](https://www.nature.com/articles/nature13186)
 * [Neuroinformatics of the Allen Mouse Brain Connectivity Atlas](https://www.ncbi.nlm.nih.gov/pubmed/25536338)
-
-## License
-MIT License would be appropriate but I don't know if that checks out with MathWorks' license.
-
-This toolbox uses third party code; JSON.m which was published on MATLAB Central and falls under the MathWorks Limited License.
-
-https://se.mathworks.com/matlabcentral/fileexchange/42236-parse-json-text
