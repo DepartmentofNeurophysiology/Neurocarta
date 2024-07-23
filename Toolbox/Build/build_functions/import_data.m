@@ -85,14 +85,17 @@ for i = 1:n
     contra = hem(3-HemisphereID);
     
     % Determine injection site by maximum projection density and normalize
-    [found,ix] = ismember(StructureName,nodelist);
-    ix = ix(found);
-    [~,jx] = max(ipsi.density(ix));
-    experiments.injection_site(i) = nodelist(jx);
-    ix = ix(jx);
+    [~,ix] = sort(ipsi.density,'descend');
+    for j = 1:length(ix)
+        if ismember(StructureName(ix(j)),nodelist)
+            break;
+        end
+    end
+    experiments.injection_site(i) = StructureName(ix(j));
+    
     for p = 1:4
-        ipsi.(proj{p}) = ipsi.(proj{p})' / ipsi.(proj{p})(ix);
-        contra.(proj{p}) = contra.(proj{p})' / ipsi.(proj{p})(ix);
+        ipsi.(proj{p}) = ipsi.(proj{p})' / ipsi.(proj{p})(ix(j));
+        contra.(proj{p}) = contra.(proj{p})' / ipsi.(proj{p})(ix(j));
     end
     
     save(fullfile('Data',experiments.id{i}), ...
