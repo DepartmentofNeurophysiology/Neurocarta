@@ -26,7 +26,7 @@ end
 
 if size(L,1) ~= size(L,2) % Bilateral map
     n = size(L,1);
-    L = [L;[L(:,(n+1):(2*n))' L(:,1:n)]];
+    L = [L;[L(:,(n+1):(2*n)) L(:,1:n)]];
 end
 
 A = cell(K,1);

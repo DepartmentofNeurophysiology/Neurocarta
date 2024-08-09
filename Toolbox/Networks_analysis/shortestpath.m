@@ -22,7 +22,7 @@ function [d,p] = shortestpath(L,source,target)
 
 n = size(L,1);
 if n ~= size(L,2) % Bilateral map
-    L = [L;[L(:,(n+1):(2*n))' L(:,1:n)]];
+    L = [L;[L(:,(n+1):(2*n)) L(:,1:n)]];
     n = size(L,1);
 end
 d = inf(1,n); % distance between source and targets
