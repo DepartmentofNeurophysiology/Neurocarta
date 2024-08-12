@@ -94,8 +94,8 @@ for i = 1:n
     experiments.injection_site(i) = StructureName(ix(j));
     
     for p = 1:4
-        ipsi.(proj{p}) = ipsi.(proj{p})' / ipsi.(proj{p})(ix(j));
         contra.(proj{p}) = contra.(proj{p})' / ipsi.(proj{p})(ix(j));
+        ipsi.(proj{p}) = ipsi.(proj{p})' / ipsi.(proj{p})(ix(j));
     end
     
     save(fullfile('Data',experiments.id{i}), ...
