@@ -26,12 +26,10 @@ function map = loadmap(var,src,experiments,nodelist)
 if nargin < 2
     src = var;
 end
-if nargin < 3
-    d = dir(fullfile('Data','*.mat'));
-    d = fullfile('Data',{d(:).name}');
-elseif isequal(experiments,[])
-    d = dir(fullfile('Data','*.mat'));
-    d = fullfile('Data',{d(:).name}');
+if nargin < 3 || isempty(experiments)
+    load('experiments', 'experiments');
+    d = experiments.id;
+    clear experiments;
 else
     d = fullfile('Data',experiments);
 end
@@ -45,6 +43,9 @@ map = zeros(n,2*n);
 n_src = zeros(n,1);
 tic;
 for i = 1:length(d)
+    if exist([d{i} '.mat'], 'file') ~= 2
+        continue
+    end
     data = load(d{i},'ipsi','contra','StructureName');
     data_ipsi = zeros(1,n);
     data_contra = zeros(1,n);

@@ -42,7 +42,7 @@ for i = 1:n
     % Create empty data structure
     StructureID = [];
     StructureName = [];
-    HemisphereID = 0;
+    hidnr = [0 0];
     for p = 1:4
         hem(1).(proj{p}) = []; % Left hemisphere data
         hem(2).(proj{p}) = []; % Right hemisphere data
@@ -67,9 +67,7 @@ for i = 1:n
         % add data to data structure
         h = d(j).hemisphere_id;
         if d(j).is_injection==1 % injection site: add or replace
-            if HemisphereID == 0
-                HemisphereID = h;
-            end
+            hidnr(h) = hidnr(h) + 1;
             for p = 1:4
                 hem(h).(proj{p})(found) = d(j).(proj1{p});
             end
@@ -80,7 +78,19 @@ for i = 1:n
         end
     end
     
-    % Divide projections into ipsi- vs contralateral
+    % Determine injection hemisphere and divide projections into ipsi- vs contralateral
+    % Use three measures to determine injection hemisphere:
+    % % the one with the most injection structures;
+    % % the one with the biggest sum of projection densities;
+    % % and the one with the highest projection density
+    [~, hidnr] = max(hidnr);
+    [~, sumnr] = max([sum(hem(1).density), sum(hem(2).density)]);
+    [~, maxnr] = max([max(hem(1).density), max(hem(2).density)]);
+    % Ignore experiments where the measures are not consistent
+    if hidnr ~= sumnr || hidnr ~= maxnr || sumnr ~= maxnr
+        continue
+    end
+    HemisphereID = hidnr;
     ipsi = hem(HemisphereID);
     contra = hem(3-HemisphereID);
     
