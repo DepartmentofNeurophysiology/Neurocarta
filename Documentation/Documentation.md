@@ -45,7 +45,6 @@ findarea|Find area by (partial) name
 loadmap|Compile experiment files into single network
 generatemaps|Calls `loadmap` with many different parameters
 filtermap|Filter weak connections from network
-normalizemap|Normalize connections to [0,1] interval
 trimmap|Remove any disconnected nodes from network
 
 ### Network analysis
@@ -61,3 +60,4 @@ getcentrality|Returns betweenness centrality measure for nodes in the network
 kshortestpaths|Computes the K shortest paths a pair of nodes
 getkpaths|Computes the K shortest paths between all node pairs
 macromap|Returns adjacency matrix with averaged connectivity between larger brain regions
+exportnetwork|Exports network data to GEXF file format suitable for network visualization software
