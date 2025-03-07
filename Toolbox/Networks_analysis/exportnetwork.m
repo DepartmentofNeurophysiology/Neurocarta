@@ -39,7 +39,8 @@ N = size(conn, 1);
 if N ~= size(conn, 2) % Bilateral map
     conn = [conn;[conn(:,(N+1):(2*N)) conn(:,1:N)]];
     N = size(conn, 1);
-    labels = [labels ; strcat('c', labels)];
+    %labels = [labels ; strcat('c', labels)];
+    labels = [strcat(labels, ' (Right)') ; strcat(labels, ' (Left)')];
 end
 
 node_props = [];
