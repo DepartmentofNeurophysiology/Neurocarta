@@ -8,7 +8,7 @@ function exportnetwork(filename, labels, conn, directed, varargin)
 % Input:
 % filename: (required) name of output file.
 % labels:   (required) N-length cell array with node labels.
-% conn:     (required) Connectivity matrix (N by N).
+% conn:     (required) Connectivity matrix (N by N) or (N by 2N).
 % directed: (required) true/false whether edge directionality should be
 %           considered.
 %
@@ -55,13 +55,21 @@ for i = 1:length(varargin)
     end
     
     sz = size(varargin{i}.data);
-    if isequal(sz, [1 N]) || isequal(sz, [N 1])
+    if isequal(sz, [1 N]) || isequal(sz, [N 1]) || isequal(sz, [1 N/2]) || isequal(sz, [N/2 1])
+        if isequal(sz, [1 N/2]) || isequal(sz, [N/2 1]) % Deal with bilateral sized node data
+            varargin{i}.data = [varargin{i}.data(:);varargin{i}.data(:)];
+        end
         if varargin{i}.name == "color"
             node_viz = varargin{i};
         else
             node_props = [node_props varargin{i}];
         end
-    elseif isequal(sz, [N N])
+    elseif isequal(sz, [N N]) || isequal(sz, [N/2 N])
+        if isequal(sz, [N/2 N]) % Deal with bilateral sized edge data
+            v = varargin{i}.data;
+            varargin{i}.data = [v;[v(:,(N/2+1):N) v(:,1:N/2)]];
+            clear v;
+        end
         if varargin{i}.name == "color"
             edge_viz = varargin{i};
         else
