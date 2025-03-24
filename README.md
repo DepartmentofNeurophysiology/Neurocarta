@@ -8,7 +8,7 @@ This toolbox enables the user to download the dataset, import it into MATLAB, no
 ![Workflow](Documentation/flowchart.png)
 
 ## Installation
-The toolbox can be installed by downloading or cloning this repository and running build_database.m, which will download all of the necessary files. This will take some time but ensures that the dataset is up to date, since new experiments might be added at any point in time. A pre-installed version of the toolbox will be available in the future.
+The toolbox can be installed by downloading or cloning this repository and running build_database.m, which will download all of the necessary files. This will take some time but ensures that the dataset is up to date, since new experiments might be added at any point in time.
 
 ## Documentation
 The full documentation can be found here: [Documentation](Documentation/Documentation.md)
