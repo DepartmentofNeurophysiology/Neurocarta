@@ -1,0 +1,1 @@
+In order to view the interactive figure in the browser, start a simple HTTP server, e.g. by running `python3 -m http.server`.

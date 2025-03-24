@@ -1,0 +1,53 @@
+{
+  "type": "network",
+  "version": "1.0",
+  "data": "data.json",
+  "logo": {
+    "file": "",
+    "link": "",
+    "text": ""
+  },
+  "text": {
+    "more": "",
+    "intro": "Bergmans and Celikel (under review). NeuroCarta: An Automated and Quantitative Approach to Mapping Cellular Networks in the Mouse Brain.<br><br>Extension of Supplemental Figure 3. Bilateral mouse brain network constructed by Neurocarta and visualized in Gephi. Using the Fruchterman-Reingold algorithm a network layout was generated based solely on the network connectivity.",
+    "title": "Bilateral Mouse Brain Network"
+  },
+  "legend": {
+    "edgeLabel": "Projection density",
+    "colorLabel": "AMBCA color",
+    "nodeLabel": "Brain area"
+  },
+  "features": {
+    "search": true,
+    "groupSelectorAttribute": false,
+    "hoverBehavior": "default"
+  },
+  "informationPanel": {
+    "groupByEdgeDirection": true,
+    "imageAttribute": false
+  },
+  "sigma": {
+    "drawingProperties": {
+      "defaultEdgeType": "line",
+      "defaultHoverLabelBGColor": "#002147",
+      "defaultLabelBGColor": "#ddd",
+      "activeFontStyle": "bold",
+      "defaultLabelColor": "#000",
+      "labelThreshold": 10,
+      "defaultLabelHoverColor": "#fff",
+      "fontStyle": "bold",
+      "hoverFontStyle": "bold",
+      "defaultLabelSize": 14
+    },
+    "graphProperties": {
+      "maxEdgeSize": 2,
+      "minEdgeSize": 0.2,
+      "minNodeSize": 1,
+      "maxNodeSize": 7
+    },
+    "mouseProperties": {
+      "maxRatio": 20,
+      "minRatio": 0.75
+    }
+  }
+}
